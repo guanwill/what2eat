@@ -1,20 +1,13 @@
-require 'rvm/capistrano'
-require 'bundler/capistrano'
-require 'delayed/recipes'
-
 set :application, "what2eat"
 
 set :scm, :git
-set :repository, "git@bitbucket.org:astadev/ssr.git"
-set :git_enable_submodules, 1 # If you have vendored rails
+set :repository, "https://github.com/guanwill/what2eat.git"
 set :branch, 'master'
-set :git_shallow_clone, 1
-set :scm_verbose, true
 set :rails_env, 'production'
 
-set :user, 'ssr'
-set :domain, '54.252.90.81'
-set :applicationdir, "/var/www/ssr"
+set :user, 'will'
+set :domain, '104.236.193.107'
+set :applicationdir, "/home/will/what2eat"
 
 # Server roles
 role :web, domain
@@ -23,13 +16,8 @@ role :db, domain
 
 # Deploy config
 set :deploy_to, applicationdir
-set :deploy_via, :export
 set :use_sudo, false
 set :normalize_asset_timestamps, false
-
-# Whenever
-set :whenever_command, "bundle exec whenever"
-require 'whenever/capistrano'
 
 # Passenger
 namespace :deploy do
