@@ -1,0 +1,139 @@
+// Place all the styles related to the food controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.body-inner {
+  overflow-x:hidden;
+  background: url('4.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: inherit;
+
+}
+
+.body-inner-inner {
+  background-color: #ffffff;
+  height: inherit;
+  opacity: 0.8;
+}
+
+p {
+  margin: 0 !important;
+}
+
+a{
+  text-decoration: none !important;
+}
+
+.fa-frown-o, .fa-spoon, .fa-coffee {
+  color: rgb(158, 144, 0);
+}
+
+#spinner {
+  // display: flex;
+  // justify-content: center;
+  // align-content: center;
+}
+
+.foodspinner {
+  height: 300px;
+  position: absolute;
+  top: 25%;
+}
+
+#food_container {
+  text-align: center;
+  width: 100%;
+  height: 370px;
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+#questions {
+  font-size: 40px;
+  font-family: 'Copse', serif;
+}
+
+#adjectives {
+  font-family: 'Dancing Script', cursive;
+  font-size: 45px;
+  color: rgb(238, 187, 49);
+}
+
+#foodselected {
+  font-family: 'Lobster', cursive;
+  font-size: 70px;
+}
+
+.navbar-inverse {
+  border-radius: 0 !important;
+  width: 100%;
+  background: black !important;
+}
+
+.navbar-brand {
+  float: none !important;
+}
+
+.nav-text {
+  color: white;
+  font-family: 'Barrio', cursive;
+  font-size: 24px;
+}
+
+.fa-cut {
+  color: rgb(158, 144, 0);
+  font-size: 26px !important;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+.tooltip-inner {
+  // background: #F7F7F9 !important;
+  background: white !important;
+  border: 1px solid rgb(238, 187, 49) !important;
+  color: black !important;
+  padding: 10px !important;
+  font-size: 16px;
+  // font-weight: bold;
+}
+
+#reroll {
+  margin: 50px;
+}
+
+#spinner {
+  margin: 50px;
+}
+
+@-webkit-keyframes zoominout {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+#foodselected {
+    animation: zoominout 3s infinite;
+}

@@ -1,0 +1,6 @@
+$('div#food_container').html("<%= j render(:partial => 'food/food', :locals => { :food => @food }) %>");
+
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})

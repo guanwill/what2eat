@@ -1,0 +1,34 @@
+
+  <h3 id="questions"><%=@random_question%></h3>
+
+  <p id="adjectives"><%=@adjectives %></p>
+  <h2 id="foodselected"><%= @food %> </h2>
+
+
+  <div id="reroll" data-toggle="tooltip" data-placement="bottom" title="Try again">
+    <!-- <%= link_to "Reroll", generate_path, :remote => true, :id => 'reroll_link' %> -->
+    <%= link_to '<i class="fa fa-spoon" aria-hidden="true"></i>&nbsp<i class="fa fa-frown-o fa-2x fa-spinn" aria-hidden="true"></i>&nbsp<i class="fa fa-coffee " aria-hidden="true"></i>'.html_safe, generate_path, :remote => true, :id => 'reroll_link' %>
+  </div>
+
+
+
+
+
+
+
+<!-- Loading icon and functionality -->
+  <div id="spinner">
+      <!-- <%= image_tag "foodloading.gif", :class => 'foodspinner' %> -->
+      <p> <i class="fa fa-spinner fa-pulse fa-fw"></i>&nbsp Finding the right food for you...</p>
+  </div>
+
+  <script type="text/javascript">
+      $("#spinner").hide(); // Hide the spinner by default
+      $("#reroll").show(); // But show the menu
+
+      $("#reroll_link").click(function (event) {
+          console.log("onClickEvent() called")
+          $("#spinner").show();
+          $("#reroll").hide();
+      });
+  </script>
