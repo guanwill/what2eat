@@ -32,7 +32,7 @@ production:
  host: localhost
  database: what2eat_production
  username: will
- password: 
+ password: will#123 
 
 
 #   production:
