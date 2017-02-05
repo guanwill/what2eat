@@ -42,7 +42,7 @@ end
 
 namespace :deploy do
 
-  #  task :start do ; end
+   task :start do ; end
   #  task :stop do ; end
   #  task :restart do
   #    on roles(:app) do
