@@ -25,18 +25,18 @@ namespace :deploy do
    end
 end
 
-namespace :deploy do
-  desc "Reload the database with seed data"
-  task :seed do
-    on roles(:app) do
-      execute "cd #{current_path}; bundle exec rake db:seed"
-    end
-  end
-
-  desc "Migrate the database"
-  task :migrate do
-    on roles(:app) do
-      execute "cd #{current_path}; bundle exec rake db:migrate"
-    end
-  end
-end
+# namespace :deploy do
+#   desc "Reload the database with seed data"
+#   task :seed do
+#     on roles(:app) do
+#       execute "cd #{current_path}; bundle exec rake db:seed"
+#     end
+#   end
+#
+#   desc "Migrate the database"
+#   task :migrate do
+#     on roles(:app) do
+#       execute "cd #{current_path}; bundle exec rake db:migrate"
+#     end
+#   end
+# end
