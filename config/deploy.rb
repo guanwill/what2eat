@@ -19,24 +19,24 @@ namespace :deploy do
    task :start do ; end
    task :stop do ; end
    task :restart do
-    #  run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-     on roles(:app), in: :sequence, wait: 5 do
+     on roles(:app) do
+      run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
      end
    end
 end
 
-# namespace :deploy do
-#   desc "Reload the database with seed data"
-#   task :seed do
-#     on roles(:app) do
-#       execute "cd #{current_path}; bundle exec rake db:seed"
-#     end
-#   end
-#
-#   desc "Migrate the database"
-#   task :migrate do
-#     on roles(:app) do
-#       execute "cd #{current_path}; bundle exec rake db:migrate"
-#     end
-#   end
-# end
+namespace :deploy do
+  desc "Reload the database with seed data"
+  task :seed do
+    on roles(:app) do
+      execute "cd #{current_path}; bundle exec rake db:seed"
+    end
+  end
+
+  desc "Migrate the database"
+  task :migrate do
+    on roles(:app) do
+      execute "cd #{current_path}; bundle exec rake db:migrate"
+    end
+  end
+end
