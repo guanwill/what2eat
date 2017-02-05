@@ -15,7 +15,6 @@ set :deploy_to, "/var/www/what2eat"
 set :use_sudo, false
 set :normalize_asset_timestamps, false
 
-# Passenger
 namespace :deploy do
    task :start do ; end
    task :stop do ; end
@@ -29,11 +28,11 @@ end
 namespace :deploy do
   desc "Reload the database with seed data"
   task :seed do
-    run "cd #{current_path}; bundle exec rake db:seed"
+    execute "cd #{current_path}; bundle exec rake db:seed"
   end
 
   desc "Migrate the database"
   task :migrate do
-    run "cd #{current_path}; bundle exec rake db:migrate"
+    execute "cd #{current_path}; bundle exec rake db:migrate"
   end
 end
