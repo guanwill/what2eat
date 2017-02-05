@@ -1,21 +1,17 @@
+server '104.236.193.107', roles: [:web, :app, :db], primary: true
+
+
 set :application, "what2eat"
 
 set :scm, :git
-set :repository, "https://github.com/guanwill/what2eat.git"
+set :repo_url, "https://github.com/guanwill/what2eat.git"
 set :branch, 'master'
 set :rails_env, 'production'
-
+set :keep_releases, 5
 set :user, 'will'
-set :domain, '104.236.193.107'
-set :applicationdir, "/home/will/what2eat"
-
-# Server roles
-role :web, domain
-role :app, domain
-role :db, domain
 
 # Deploy config
-set :deploy_to, applicationdir
+set :deploy_to, "/var/www/what2eat"
 set :use_sudo, false
 set :normalize_asset_timestamps, false
 
@@ -23,8 +19,10 @@ set :normalize_asset_timestamps, false
 namespace :deploy do
    task :start do ; end
    task :stop do ; end
-   task :restart, :roles => :app, :except => { :no_release => true } do
-     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+   task :restart do
+    #  run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+     on roles(:app), in: :sequence, wait: 5 do
+     end
    end
 end
 
