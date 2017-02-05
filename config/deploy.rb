@@ -41,16 +41,35 @@ namespace :puma do
 end
 
 namespace :deploy do
-   task :start do ; end
-   task :stop do ; end
-   task :restart do
+
+  #  task :start do ; end
+  #  task :stop do ; end
+  #  task :restart do
+  #    on roles(:app) do
+  #     # execute "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+  #     invoke 'puma:restart'
+  #    end
+  #  end
+
+   desc 'Initial Deploy'
+   task :initial do
      on roles(:app) do
-      # execute "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-      invoke 'puma:restart'
+       before 'deploy:restart', 'puma:start'
+       invoke 'deploy'
      end
    end
 
-  #  after  :finishing,    :restart
+   desc 'Restart application'
+   task :restart do
+     on roles(:app), in: :sequence, wait: 5 do
+       invoke 'puma:restart'
+     end
+   end
+
+   after  :finishing,    :compile_assets
+   after  :finishing,    :cleanup
+   after  :finishing,    :restart
+
 end
 
 # namespace :deploy do
