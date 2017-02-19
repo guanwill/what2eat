@@ -2,7 +2,7 @@
 # app_dir = File.expand_path("../..", __FILE__)
 # shared_dir = "#{app_dir}/shared"
 shared_dir = '/var/www/what2eat/shared'
-working_directory working_dir
+working_directory shared_dir
 
 
 # Set unicorn options
