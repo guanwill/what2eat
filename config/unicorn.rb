@@ -1,8 +1,8 @@
 # set path to application
 # app_dir = File.expand_path("../..", __FILE__)
 # shared_dir = "#{app_dir}/shared"
-shared_dir = '/var/www/what2eat/shared'
-working_directory shared_dir
+working_dir = '/var/www/what2eat/current'
+working_directory working_dir
 
 
 # Set unicorn options
@@ -11,14 +11,14 @@ preload_app true
 timeout 30
 
 # Set up socket location
-listen "#{shared_dir}/sockets/unicorn.sock", :backlog => 64
+listen "#{working_dir}/tmp/sockets/unicorn.sock", :backlog => 64
 
 # Logging
-stderr_path "#{shared_dir}/log/unicorn.stderr.log"
-stdout_path "#{shared_dir}/log/unicorn.stdout.log"
+stderr_path "#{working_dir}/log/unicorn.stderr.log"
+stdout_path "#{working_dir}/log/unicorn.stdout.log"
 
 # Set master PID location
-pid "#{shared_dir}/pids/unicorn.pid"
+pid "#{working_dir}/tmp/pids/unicorn.pid"
 
 
 # If using ActiveRecord, disconnect (from the database) before forking.
