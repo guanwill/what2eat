@@ -46,7 +46,7 @@ group :development do
   gem 'capistrano-rvm',     require: false
   gem 'capistrano-rails',   require: false
   gem 'capistrano-bundler', require: false
-  gem 'capistrano3-puma',   require: false
+  # gem 'capistrano3-puma',   require: false
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   # gem 'web-console', '~> 2.0'
@@ -55,4 +55,4 @@ group :development do
   gem 'spring'
 end
 
-gem 'puma'
+# gem 'puma'
