@@ -70,6 +70,12 @@ namespace :deploy do
   #  after  :finishing,    :cleanup
   #  after  :finishing,    :restart
 
+  before :compile_assets, "assets:cleaning_assets"
+
+  after 'deploy:restart', 'unicorn:reload'    # app IS NOT preloaded
+	after 'deploy:restart', 'unicorn:restart'   # app preloaded
+	after 'deploy:restart', 'unicorn:duplicate' # before_fork hook implemented (zero downtime deployments)
+
 end
 
 # namespace :deploy do

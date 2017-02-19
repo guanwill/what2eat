@@ -20,18 +20,36 @@ stdout_path "#{shared_dir}/log/unicorn.stdout.log"
 pid "#{shared_dir}/pids/unicorn.pid"
 
 
-# # Garbage collection settings.
-# GC.respond_to?(:copy_on_write_friendly=) &&
-#   GC.copy_on_write_friendly = true
-#
-# # If using ActiveRecord, disconnect (from the database) before forking.
+# If using ActiveRecord, disconnect (from the database) before forking.
+before_fork do |server, worker|
+  defined?(ActiveRecord::Base) &&
+    ActiveRecord::Base.connection.disconnect!
+end
+
+# After forking, restore your ActiveRecord connection.
+after_fork do |server, worker|
+  defined?(ActiveRecord::Base) &&
+    ActiveRecord::Base.establish_connection
+end
+
+
 # before_fork do |server, worker|
-#   defined?(ActiveRecord::Base) &&
+#   Signal.trap 'TERM' do
+#     puts 'Unicorn master intercepting TERM and sending myself QUIT instead'
+#     Process.kill 'QUIT', Process.pid
+#   end
+#
+#   if defined? ActiveRecord::Base
 #     ActiveRecord::Base.connection.disconnect!
+#   end
 # end
 #
-# # After forking, restore your ActiveRecord connection.
 # after_fork do |server, worker|
-#   defined?(ActiveRecord::Base) &&
+#   Signal.trap 'TERM' do
+#     puts 'Unicorn worker intercepting TERM and doing nothing. Wait for master to sent QUIT'
+#   end
+#
+#   if defined? ActiveRecord::Base
 #     ActiveRecord::Base.establish_connection
+#   end
 # end
