@@ -43,11 +43,19 @@ set :normalize_asset_timestamps, false
 namespace :deploy do
 
    task :start do ; end
-   task :stop do ; end
+
+   task :stop do
+     on roles(:app) do
+      invoke 'unicorn:stop'
+     end
+   end
+
    task :restart do
      on roles(:app) do
       # execute "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   #     invoke 'puma:restart'
+      invoke 'unicorn:stop'
+      invoke 'unicorn:reload'
      end
    end
 
@@ -70,9 +78,9 @@ namespace :deploy do
   #  after  :finishing,    :cleanup
   #  after  :finishing,    :restart
 
-  after 'deploy:restart', 'unicorn:reload'    # app IS NOT preloaded
-	after 'deploy:restart', 'unicorn:restart'   # app preloaded
-	after 'deploy:restart', 'unicorn:duplicate' # before_fork hook implemented (zero downtime deployments)
+  # after 'deploy:restart', 'unicorn:reload'    # app IS NOT preloaded
+	# after 'deploy:restart', 'unicorn:restart'   # app preloaded
+	# after 'deploy:restart', 'unicorn:duplicate' # before_fork hook implemented (zero downtime deployments)
 
 end
 
